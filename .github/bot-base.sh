@@ -8,6 +8,8 @@ ISSUE_URL=$(jq -er ".issue.url" "$GITHUB_EVENT_PATH")
 USER_LOGIN=$(jq -er ".comment.user.login" "$GITHUB_EVENT_PATH")
 USER_URL=$(jq -er ".comment.user.url" "$GITHUB_EVENT_PATH")
 
+jq < $GITHUB_EVENT_PATH
+
 api_get() {
   curl -X GET -s -H "${AUTH_HEADER}" -H "${API_HEADER}" "$1"
 }
