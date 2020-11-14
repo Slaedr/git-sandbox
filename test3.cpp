@@ -1,1 +1,2 @@
-int asdf ;  bool  b ;
+int asdf;
+bool b;
