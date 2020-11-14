@@ -3,7 +3,6 @@
 source $(dirname "${BASH_SOURCE[0]}")/bot-base.sh
 
 echo -n "Collecting information on pull request"
-cat $GITHUB_EVENT_PATH | jq .
 PR_URL=$(jq -er ".pull_request.url" "$GITHUB_EVENT_PATH")
 echo -n .
 PR_JSON=$(api_get $PR_URL)
@@ -13,6 +12,14 @@ echo -n .
 HEAD_BRANCH=$(echo "$PR_JSON" | jq -er .head.ref)
 echo .
 HEAD_URL="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/$HEAD_REPO"
+
+bot_comment() {
+  (set +x; api_post $ISSUE_URL/comments "{\"body\":\"$1\"}" > /dev/null)
+}
+
+bot_error() {
+  (set +x; echo "$1"; bot_comment "Error: $1"; exit 1)
+}
 
 set -x
 
