@@ -15,7 +15,7 @@ api_get() {
 }
 
 api_post() {
-  curl -X POST -s -H "${AUTH_HEADER}" -H "${API_HEADER}" "$1" -d "$1"
+  curl -X POST -s -H "${AUTH_HEADER}" -H "${API_HEADER}" "$1" -d "$2"
 }
 
 bot_error() {
