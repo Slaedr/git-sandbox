@@ -15,7 +15,7 @@ done
 LIST_FILES=$(git diff --name-only)
 git commit *.cpp -m "Format files
 
-Co-authored-by: $USER_COMBINED"
+Co-authored-by: $USER_COMBINED" || true
 git push
 if [[ "$LIST_FILES" != "" ]]; then
   bot_comment "Formatted the following files:\n"'```'"\n$LIST_FILES\n"'```'
