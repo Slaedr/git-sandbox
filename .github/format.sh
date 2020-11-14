@@ -6,6 +6,8 @@ if [[ "$BASE_REPO" != "$HEAD_REPO" ]]; then
   error "I can't operate on forks!"
 fi
 
+set -xe
+
 git config user.email "bot@upsj.de"
 git config user.name "Bot"
 git checkout -t origin/$HEAD_BRANCH
