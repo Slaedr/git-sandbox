@@ -28,8 +28,7 @@ bot_error() {
   exit 1
 }
 
-PR_URL=$(jq -er ".pull_request.url" "$GITHUB_EVENT_PATH")
-PR_NUMBER=$(jq -er ".pull_request.number" "$GITHUB_EVENT_PATH")
+PR_URL=$(jq -er ".issue.pull_request.url" "$GITHUB_EVENT_PATH")
 
 # collect info on the PR we are checking
 PR_JSON=$(api_get $PR_URL)
