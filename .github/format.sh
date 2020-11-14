@@ -10,7 +10,7 @@ git config user.email "bot@upsj.de"
 git config user.name "Bot"
 git remote add tmp-origin "$HEAD_URL"
 git fetch tmp-origin
-git checkout tmp-origin/$HEAD_BRANCH
+git checkout -t tmp-origin/$HEAD_BRANCH
 for f in *.cpp; do
   clang-format -i $f
 done
