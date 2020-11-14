@@ -12,6 +12,14 @@ echo -n .
 PR_URL=$(jq -er ".issue.pull_request.url" "$GITHUB_EVENT_PATH")
 echo .
 
+bot_comment() {
+  (set +x; api_post $ISSUE_URL/comments "{\"body\":\"$1\"}" > /dev/null)
+}
+
+bot_error() {
+  (set +x; echo "$1"; bot_comment "Error: $1"; exit 1)
+}
+
 # collect info on the PR we are checking
 echo -n "Collecting information on pull request"
 PR_JSON=$(api_get $PR_URL)
