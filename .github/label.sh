@@ -20,3 +20,4 @@ if echo "$PR_FILES" | grep .cpp; then
 fi
 echo $OLD_LABELS, $NEW_LABELS
 NEW_LABELS=$(jq -rn "$OLD_LABELS + $NEW_LABELS | unique")
+echo $NEW_LABELS
