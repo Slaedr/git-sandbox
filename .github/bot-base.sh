@@ -41,6 +41,6 @@ HEAD_BRANCH=$(echo "$PR_JSON" | jq -er .head.ref)
 # collect info on the user that invoked the bot
 USER_JSON=$(api_get $USER_URL)
 
-USER_NAME=$(echo "$USER_JSON" | jq -er ".name")
-USER_EMAIL=$(echo "$USER_JSON" | jq -er ".email")
+USER_NAME=$(echo "$USER_JSON" | jq -er ".name" || echo "$USER_LOGIN")
+USER_EMAIL=$(echo "$USER_JSON" | jq -er ".email" || echo "$USER_LOGIN@users.noreply.github.com")
 USER_COMBINED="$USER_NAME <$USER_EMAIL>"
