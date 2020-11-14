@@ -2,4 +2,4 @@
 
 source $(dirname "${BASH_SOURCE[0]}")/bot-base.sh
 
-error "Testfehler!"
+bot_error "Testfehler!"
