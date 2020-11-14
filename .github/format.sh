@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $(dirname "${BASH_SOURCE[0]}")/bot-base.sh
+source $(dirname "${BASH_SOURCE[0]}")/bot-pr-comment-base.sh
 
 set -x
 
