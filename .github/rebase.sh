@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source $(dirname "${BASH_SOURCE[0]}")/bot-base.sh
+
 set -e
 
 git remote add base "$BASE_URL"
