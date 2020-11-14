@@ -27,7 +27,7 @@ set -x
 
 git remote add fork "${HEAD_URL}"
 git fetch fork "$HEAD_BRANCH"
-git checkout -t "fork/$HEAD_BRANCH"
+git checkout -b format-tmp-$HEAD_BRANCH "fork/$HEAD_BRANCH"
 for f in *.cpp; do
   clang-format -i $f
 done
