@@ -52,7 +52,7 @@ HEAD_URL="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/$HEAD_REPO"
 # collect info on the user that invoked the bot
 echo -n "Collecting information on triggering user"
 USER_JSON=$(api_get $USER_URL)
-echo -n .
+echo .
 
 USER_NAME=$(echo "$USER_JSON" | jq -r ".name")
 if [[ "$USER_NAME" == "null" ]]; then
