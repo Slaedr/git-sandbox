@@ -12,3 +12,7 @@ api_get() {
 api_post() {
   (set +x; curl -X POST -s -H "${AUTH_HEADER}" -H "${API_HEADER}" "$1" -d "$2")
 }
+
+api_patch() {
+  (set +x; curl -X PATCH -s -H "${AUTH_HEADER}" -H "${API_HEADER}" "$1" -d "$2")
+}
