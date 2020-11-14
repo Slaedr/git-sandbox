@@ -3,6 +3,7 @@
 source $(dirname "${BASH_SOURCE[0]}")/bot-pr-comment-base.sh
 
 echo -n "Collecting information on pull request"
+cat $GITHUB_EVENT_PATH | jq .
 PR_URL=$(jq -er ".pull_request.url" "$GITHUB_EVENT_PATH")
 echo -n .
 PR_JSON=$(api_get $PR_URL)
