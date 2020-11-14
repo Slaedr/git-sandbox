@@ -4,7 +4,7 @@ on:
 
 name: Bot summoned by changes in PR
 jobs:
-  label:
+  check-format:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the latest code
