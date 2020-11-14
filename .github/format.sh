@@ -6,7 +6,9 @@ if [[ "$BASE_REPO" != "$HEAD_REPO" ]]; then
   error "I can't operate on forks!"
 fi
 
-git checkout origin/$HEAD_BRANCH
+git remote add tmp-origin "$HEAD_URL"
+git fetch tmp-origin
+git checkout tmp-origin/$HEAD_BRANCH
 LIST_FILES=""
 for f in *.cpp; do
   clang-format $f > tmp
