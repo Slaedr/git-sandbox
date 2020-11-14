@@ -20,7 +20,7 @@ git fetch origin $BASE_BRANCH
 git fetch fork $HEAD_BRANCH
 
 # do the rebase
-git checkout -b $HEAD_BRANCH fork/$HEAD_BRANCH
+git checkout -b rebase-tmp-$HEAD_BRANCH fork/$HEAD_BRANCH
 git rebase origin/$BASE_BRANCH || bot_error "Rebasing failed"
 
 # push back
