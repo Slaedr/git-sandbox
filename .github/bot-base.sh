@@ -2,11 +2,17 @@
 
 set -e
 
+echo -n "Collecting information on triggering event"
 API_HEADER="Accept: application/vnd.github.v3+json"
 AUTH_HEADER="Authorization: token $GITHUB_TOKEN"
 ISSUE_URL=$(jq -er ".issue.url" "$GITHUB_EVENT_PATH")
+echo -n .
 USER_LOGIN=$(jq -er ".comment.user.login" "$GITHUB_EVENT_PATH")
+echo -n .
 USER_URL=$(jq -er ".comment.user.url" "$GITHUB_EVENT_PATH")
+echo -n .
+PR_URL=$(jq -er ".issue.pull_request.url" "$GITHUB_EVENT_PATH")
+echo .
 
 api_get() {
   curl -X GET -s -H "${AUTH_HEADER}" -H "${API_HEADER}" "$1"
@@ -26,20 +32,27 @@ bot_error() {
   exit 1
 }
 
-PR_URL=$(jq -er ".issue.pull_request.url" "$GITHUB_EVENT_PATH")
-
 # collect info on the PR we are checking
+echo -n "Collecting information on pull request"
 PR_JSON=$(api_get $PR_URL)
+echo -n .
 
 BASE_REPO=$(echo "$PR_JSON" | jq -er .base.repo.full_name)
+echo -n .
 BASE_BRANCH=$(echo "$PR_JSON" | jq -er .base.ref)
-BASE_URL="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/$BASE_REPO"
+echo -n .
 HEAD_REPO=$(echo "$PR_JSON" | jq -er .head.repo.full_name)
+echo -n .
 HEAD_BRANCH=$(echo "$PR_JSON" | jq -er .head.ref)
+echo .
+
+BASE_URL="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/$BASE_REPO"
 HEAD_URL="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/$HEAD_REPO"
 
 # collect info on the user that invoked the bot
+echo -n "Collecting information on triggering user"
 USER_JSON=$(api_get $USER_URL)
+echo -n .
 
 USER_NAME=$(echo "$USER_JSON" | jq -r ".name")
 if [[ "$USER_NAME" == "null" ]]; then
