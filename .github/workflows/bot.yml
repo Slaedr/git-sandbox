@@ -6,22 +6,22 @@ jobs:
   lint:
     name: clang-format Code Formatter
     runs-on: ubuntu-latest
-    if: github.event.issue.pull_request != '' && contains(github.event.comment.body, 'would you kindly format')
+    if: github.event.issue.pull_request != '' && github.event.comment.body == 'format!'
     steps:
-    - name: Clang Code Formatter
-      uses: ivanludvig/clang-format-action@v1.4
+    - name: Checkout the latest code
+      uses: actions/checkout@v2
+    - name: Format the code
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: .github/format.sh
   rebase:
     name: Rebase
-    if: github.event.issue.pull_request != '' && contains(github.event.comment.body, 'would you kindly rebase')
+    if: github.event.issue.pull_request != '' && github.event.comment.body == 'rebase!'
     runs-on: ubuntu-latest
     steps:
     - name: Checkout the latest code
       uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
     - name: Automatic Rebase
-      uses: cirrus-actions/rebase@1.4
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: .github/rebase.sh
