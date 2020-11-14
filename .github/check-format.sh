@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $(dirname "${BASH_SOURCE[0]}")/bot-pr-comment-base.sh
+source $(dirname "${BASH_SOURCE[0]}")/bot-base.sh
 
 echo -n "Collecting information on pull request"
 cat $GITHUB_EVENT_PATH | jq .
