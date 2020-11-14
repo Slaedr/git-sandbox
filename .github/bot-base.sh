@@ -15,11 +15,11 @@ PR_URL=$(jq -er ".issue.pull_request.url" "$GITHUB_EVENT_PATH")
 echo .
 
 api_get() {
-  curl -X GET -s -H "${AUTH_HEADER}" -H "${API_HEADER}" "$1"
+  (set +x; curl -X GET -s -H "${AUTH_HEADER}" -H "${API_HEADER}" "$1")
 }
 
 api_post() {
-  curl -X POST -s -H "${AUTH_HEADER}" -H "${API_HEADER}" "$1" -d "$2"
+  (set +x; curl -X POST -s -H "${AUTH_HEADER}" -H "${API_HEADER}" "$1" -d "$2")
 }
 
 bot_comment() {
@@ -27,9 +27,7 @@ bot_comment() {
 }
 
 bot_error() {
-  echo "$1"
-  bot_comment "Error: $1"
-  exit 1
+  (set +x; echo "$1"; bot_comment "Error: $1"; exit 1)
 }
 
 # collect info on the PR we are checking
