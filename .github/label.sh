@@ -18,7 +18,5 @@ NEW_LABELS="[]"
 if echo "$PR_FILES" | grep .cpp; then
   NEW_LABELS="$NEW_LABELS + [\"bug\"]"
 fi
-echo $OLD_LABELS, $NEW_LABELS
 PATCH_BODY=$(jq -rn "{labels:($OLD_LABELS + $NEW_LABELS | unique)}")
-echo $PATCH_BODY
 api_patch "$ISSUE_URL" "$PATCH_BODY" > /dev/null
