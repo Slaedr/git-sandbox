@@ -15,8 +15,10 @@ for f in *.cpp; do
   clang-format -i $f
 done
 LIST_FILES=$(git diff --name-only)
-git commit *.cpp -m "Format files\n\nCo-authored-by: $USER_COMBINED"
+git commit *.cpp -m "Format files
+
+Co-authored-by: $USER_COMBINED"
 git push
 if [[ "$LIST_FILES" != "yes" ]]; then
-  bot_comment "Formatted the following files:\n```$LIST_FILES\n```"
+  bot_comment "Formatted the following files:\n"'```'"$LIST_FILES\n"'```'
 fi
