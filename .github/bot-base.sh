@@ -37,6 +37,8 @@ echo -n "Collecting information on pull request"
 PR_JSON=$(api_get $PR_URL)
 echo -n .
 
+PR_MERGED=$(echo "$PR_JSON" | jq -er .merged)
+echo -n .
 BASE_REPO=$(echo "$PR_JSON" | jq -er .base.repo.full_name)
 echo -n .
 BASE_BRANCH=$(echo "$PR_JSON" | jq -er .base.ref)
