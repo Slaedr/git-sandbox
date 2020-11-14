@@ -2,9 +2,10 @@
 
 source $(dirname "${BASH_SOURCE[0]}")/bot-base.sh
 
+git remote set-url origin "$BASE_URL"
+
 set -x
 
-git remote set-url origin "$BASE_URL"
 git config --global user.email "$USER_EMAIL"
 git config --global user.name "$USER_NAME"
 
