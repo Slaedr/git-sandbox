@@ -20,4 +20,6 @@ git push
 
 if [[ "$LIST_FILES" != "" ]]; then
   bot_comment "Formatted the following files:\n"'```'"\n$LIST_FILES\n"'```'
+else
+  bot_comment "Nothing to format"
 fi
