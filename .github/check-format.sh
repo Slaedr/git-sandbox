@@ -7,6 +7,8 @@ PR_URL=$(jq -er ".pull_request.url" "$GITHUB_EVENT_PATH")
 echo -n .
 PR_JSON=$(api_get $PR_URL)
 echo -n .
+ISSUE_URL=$(echo "$PR_JSON" | jq -er ".pull_request.issue_url")
+echo -n .
 HEAD_REPO=$(echo "$PR_JSON" | jq -er .head.repo.full_name)
 echo -n .
 HEAD_BRANCH=$(echo "$PR_JSON" | jq -er .head.ref)
