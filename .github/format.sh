@@ -11,14 +11,10 @@ git config user.name "Bot"
 git remote add tmp-origin "$HEAD_URL"
 git fetch tmp-origin
 git checkout tmp-origin/$HEAD_BRANCH
-LIST_FILES=""
 for f in *.cpp; do
-  clang-format $f > tmp
-  if diff $f tmp; then
-    LIST_FILES="$LIST_FILES\n$f"
-    cat tmp > $f
-  fi
+  clang-format -i $f
 done
+LIST_FILES=$(git diff --name-only)
 git commit *.cpp -m "Format files\n\nCo-authored-by: $USER_COMBINED"
 git push
 if [[ "$LIST_FILES" != "yes" ]]; then
