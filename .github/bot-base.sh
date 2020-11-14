@@ -29,10 +29,6 @@ bot_error() {
 PR_URL=$(jq -er ".pull_request.url" "$GITHUB_EVENT_PATH")
 PR_NUMBER=$(jq -er ".pull_request.number" "$GITHUB_EVENT_PATH")
 
-if [[ "PR_URL" == "null" ]]; then
-  error "I can only operate on PRs!"
-fi
-
 # collect info on the PR we are checking
 PR_JSON=$(api_get $PR_URL)
 
