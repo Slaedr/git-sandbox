@@ -45,7 +45,7 @@ USER_NAME=$(echo "$USER_JSON" | jq -r ".name")
 if [[ "$USER_NAME" == "null" ]]; then
 	USER_NAME=$USER_LOGIN
 fi
-USER_EMAIL=$(echo "$USER_JSON" | jq -er ".email" || echo "$USER_LOGIN@users.noreply.github.com")
+USER_EMAIL=$(echo "$USER_JSON" | jq -er ".email")
 if [[ "$USER_EMAIL" == "null" ]]; then
 	USER_EMAIL="$USER_LOGIN@users.noreply.github.com"
 fi
