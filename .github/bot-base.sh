@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -xe
+set -e
 
 API_HEADER="Accept: application/vnd.github.v3+json"
 AUTH_HEADER="Authorization: token $GITHUB_TOKEN"
