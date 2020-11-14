@@ -25,7 +25,7 @@ echo -n "Collecting information on pull request"
 PR_JSON=$(api_get $PR_URL)
 echo -n .
 
-PR_MERGED=$(echo "$PR_JSON" | jq -er 'if (.merged != null) then .merged else false')
+PR_MERGED=$(echo "$PR_JSON" | jq -er 'if (.merged != null) then .merged else false end')
 echo -n .
 BASE_REPO=$(echo "$PR_JSON" | jq -er .base.repo.full_name)
 echo -n .
