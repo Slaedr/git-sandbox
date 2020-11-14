@@ -8,6 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.issue.pull_request != '' && github.event.comment.body == 'format!'
     steps:
+    - name: Checkout the latest code
+      uses: actions/checkout@v2
     - name: Format the code
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -17,6 +19,8 @@ jobs:
     if: github.event.issue.pull_request != '' && github.event.comment.body == 'rebase!'
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout the latest code
+      uses: actions/checkout@v2
     - name: Automatic Rebase
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
