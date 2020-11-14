@@ -23,7 +23,7 @@ api_post() {
 }
 
 bot_comment() {
-  api_post $ISSUE_URL/comments "{\"body\":\"$1\"}" > /dev/null
+  (set +x; api_post $ISSUE_URL/comments "{\"body\":\"$1\"}" > /dev/null)
 }
 
 bot_error() {
