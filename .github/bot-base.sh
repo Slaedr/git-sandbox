@@ -20,7 +20,7 @@ api_post() {
 
 bot_error() {
   echo "$1"
-  api_post $ISSUE_URL "{\"body\":\"Error: $1\"}"
+  api_post $ISSUE_URL/comments "{\"body\":\"Error: $1\"}"
   exit 1
 }
 
