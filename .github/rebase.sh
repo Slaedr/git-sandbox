@@ -6,6 +6,10 @@ git remote set-url origin "$BASE_URL"
 
 set -x
 
+if [[ "$PR_MERGED" == "true" ]]; then
+  bot_error "PR already merged!"
+fi
+
 git config --global user.email "$USER_EMAIL"
 git config --global user.name "$USER_NAME"
 
