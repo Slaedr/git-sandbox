@@ -19,6 +19,6 @@ git commit *.cpp -m "Format files
 
 Co-authored-by: $USER_COMBINED"
 git push
-if [[ "$LIST_FILES" != "yes" ]]; then
-  bot_comment "Formatted the following files:\n"'```'"$LIST_FILES\n"'```'
+if [[ "$LIST_FILES" != "" ]]; then
+  bot_comment "Formatted the following files:\n"'```'"\n$LIST_FILES\n"'```'
 fi
