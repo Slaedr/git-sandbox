@@ -35,8 +35,10 @@ PR_JSON=$(api_get $PR_URL)
 
 BASE_REPO=$(echo "$PR_JSON" | jq -er .base.repo.full_name)
 BASE_BRANCH=$(echo "$PR_JSON" | jq -er .base.ref)
+BASE_URL="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/$BASE_REPO"
 HEAD_REPO=$(echo "$PR_JSON" | jq -er .head.repo.full_name)
 HEAD_BRANCH=$(echo "$PR_JSON" | jq -er .head.ref)
+BASE_URL="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/$HEAD_REPO"
 
 # collect info on the user that invoked the bot
 USER_JSON=$(api_get $USER_URL)
@@ -45,7 +47,7 @@ USER_NAME=$(echo "$USER_JSON" | jq -r ".name")
 if [[ "$USER_NAME" == "null" ]]; then
 	USER_NAME=$USER_LOGIN
 fi
-USER_EMAIL=$(echo "$USER_JSON" | jq -er ".email")
+USER_EMAIL=$(echo "$USER_JSON" | jq -r ".email")
 if [[ "$USER_EMAIL" == "null" ]]; then
 	USER_EMAIL="$USER_LOGIN@users.noreply.github.com"
 fi
