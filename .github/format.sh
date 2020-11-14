@@ -2,6 +2,8 @@
 
 source $(dirname "${BASH_SOURCE[0]}")/bot-base.sh
 
+set -x
+
 if [[ "$BASE_REPO" != "$HEAD_REPO" ]]; then
   error "I can't operate on forks!"
 fi
