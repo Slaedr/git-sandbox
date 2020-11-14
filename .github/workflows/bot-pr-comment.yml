@@ -1,10 +1,10 @@
 on: 
   issue_comment:
     types: [created]
-name: Bot
+name: Bot summoned via PR comment
 jobs:
   lint:
-    name: clang-format Code Formatter
+    name: Format
     runs-on: ubuntu-latest
     if: github.event.issue.pull_request != '' && github.event.comment.body == 'format!' && (github.event.comment.author_association == 'MEMBER' || github.event.comment.author_association == 'OWNER')
     steps:
