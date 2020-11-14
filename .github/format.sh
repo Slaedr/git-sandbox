@@ -6,7 +6,7 @@ if [[ "$BASE_REPO" != "$HEAD_REPO" ]]; then
   error "I can't operate on forks!"
 fi
 
-git checkout "$HEAD_BRANCH"
+git checkout origin/$HEAD_BRANCH
 LIST_FILES=""
 for f in *.cpp; do
   clang-format $f > tmp
