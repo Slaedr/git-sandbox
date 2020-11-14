@@ -5,7 +5,11 @@ source $(dirname "${BASH_SOURCE[0]}")/bot-base.sh
 set -x
 
 if [[ "$BASE_REPO" != "$HEAD_REPO" ]]; then
-  error "I can't operate on forks!"
+  bot_error "I can't operate on forks!"
+fi
+
+if [[ "$PR_MERGED" == "true" ]]; then
+  bot_error "PR already merged!"
 fi
 
 git config user.email "bot@upsj.de"
